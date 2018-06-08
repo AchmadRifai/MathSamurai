@@ -17,6 +17,11 @@ public class Konstanta {
     public static String BUMI_URL="/bbumi.png";
     public static String SLASH1="/kiri_0.png";
     public static String BG_SOUND="/bg_sound.mp3";
+    public static String WALK_SOUND="/walk.mp3";
+    public static String BATTLE_SOUND="/burning.mp3";
+    public static String SLASH1_SOUND="/kiri1.mp3";
+    public static String SLASH2_SOUND="/kiri2.mp3";
+    public static String UP_SOUND="/qigong2.mp3";
     public static String SLASH2="/kiri_1.png";
     public static String LEVEL_UP="/up.png";
     public static String SAMURAI_DIED="/samurai_35.png";

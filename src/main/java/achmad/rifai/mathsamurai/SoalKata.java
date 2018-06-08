@@ -12,6 +12,7 @@ import achmad.rifai.mathsamurai.util.Work;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javazoom.jl.decoder.JavaLayerException;
 
 /**
  *
@@ -23,6 +24,7 @@ public class SoalKata extends javax.swing.JDialog {
     private Soal soale;
     private Thread t;
     private boolean running=true;
+    private javazoom.jl.player.Player p;
     /**
      * Creates new form SoalKata
      */
@@ -221,182 +223,278 @@ public class SoalKata extends javax.swing.JDialog {
     }
 
     private void shogunKiri1() {
-        gm.getPlayer().setState(Samurai.State.WIN);
+        try {
+            p=new javazoom.jl.player.Player(getClass().getResourceAsStream(Konstanta.SLASH1_SOUND));
+            new Thread(() -> {
+                try {
+                    p.play();
+                } catch (JavaLayerException ex) {
+                    Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }).start();
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+        }gm.getPlayer().setState(Samurai.State.WIN);
         gm.getMusuh().setState(Ronin.State.LOSE);
         gm.getAttack().setHitbox(gm.getMusuh().getHitbox());
         gm.getAttack().setShowing(true);
+        gm.getAttack().setMode(false);
         gm.getPlayer().setKiri(1);
         gv.repaint();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        while(!p.isComplete()){}
     }
 
     private void shogunKiri2() {
-        gm.getPlayer().setState(Samurai.State.WIN);
+        try {
+            p=new javazoom.jl.player.Player(getClass().getResourceAsStream(Konstanta.SLASH2_SOUND));
+            new Thread(() -> {
+                try {
+                    p.play();
+                } catch (JavaLayerException ex) {
+                    Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }).start();
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+        }gm.getPlayer().setState(Samurai.State.WIN);
         gm.getMusuh().setState(Ronin.State.LOSE);
-        gm.getAttack().jalan();
+        gm.getAttack().setMode(true);
         gm.getAttack().setShowing(true);
         gm.getPlayer().setKiri(1);
         gv.repaint();
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        while(!p.isComplete()){}
     }
 
     private void shogunKiri3() {
-        gm.getPlayer().setState(Samurai.State.WIN);
+        try {
+            p=new javazoom.jl.player.Player(getClass().getResourceAsStream(Konstanta.SLASH1_SOUND));
+            new Thread(() -> {
+                try {
+                    p.play();
+                } catch (JavaLayerException ex) {
+                    Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }).start();
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+        }gm.getPlayer().setState(Samurai.State.WIN);
         gm.getMusuh().setState(Ronin.State.LOSE);
-        gm.getAttack().jalan();
+        gm.getAttack().setMode(false);
         gm.getAttack().setShowing(true);
         gm.getPlayer().setKiri(2);
         gv.repaint();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        while(!p.isComplete()){}
     }
 
     private void shogunKiri4() {
-        gm.getPlayer().setState(Samurai.State.WIN);
+        try {
+            p=new javazoom.jl.player.Player(getClass().getResourceAsStream(Konstanta.SLASH2_SOUND));
+            new Thread(() -> {
+                try {
+                    p.play();
+                } catch (JavaLayerException ex) {
+                    Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }).start();
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+        }gm.getPlayer().setState(Samurai.State.WIN);
         gm.getMusuh().setState(Ronin.State.LOSE);
-        gm.getAttack().jalan();
+        gm.getAttack().setMode(true);
         gm.getAttack().setShowing(true);
         gm.getPlayer().setKiri(2);
         gv.repaint();
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        while(!p.isComplete()){}
     }
 
     private void shogunKiri5() {
-        gm.getPlayer().setState(Samurai.State.WIN);
+        try {
+            p=new javazoom.jl.player.Player(getClass().getResourceAsStream(Konstanta.SLASH1_SOUND));
+            new Thread(() -> {
+                try {
+                    p.play();
+                } catch (JavaLayerException ex) {
+                    Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }).start();
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+        }gm.getPlayer().setState(Samurai.State.WIN);
         gm.getMusuh().setState(Ronin.State.LOSE);
-        gm.getAttack().jalan();
+        gm.getAttack().setMode(false);
         gm.getAttack().setShowing(true);
         gm.getPlayer().setKiri(3);
         gv.repaint();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        while(!p.isComplete()){}
     }
 
     private void shogunKiri6() {
-        gm.getPlayer().setState(Samurai.State.WIN);
+        try {
+            p=new javazoom.jl.player.Player(getClass().getResourceAsStream(Konstanta.SLASH2_SOUND));
+            new Thread(() -> {
+                try {
+                    p.play();
+                } catch (JavaLayerException ex) {
+                    Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }).start();
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+        }gm.getPlayer().setState(Samurai.State.WIN);
         gm.getMusuh().setState(Ronin.State.LOSE);
-        gm.getAttack().jalan();
+        gm.getAttack().setMode(true);
         gm.getAttack().setShowing(true);
         gm.getPlayer().setKiri(3);
         gv.repaint();
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
-        } gm.getAttack().setShowing(false);
+        while(!p.isComplete()){}
+        gm.getAttack().setShowing(false);
     }
 
     private void levelUp() {
-        gm.getPlayer().setState(Samurai.State.IDLE);
+        try {
+            p=new javazoom.jl.player.Player(getClass().getResourceAsStream(Konstanta.UP_SOUND));
+            new Thread(()->{
+                try {
+                    p.play();
+                } catch (JavaLayerException ex) {
+                    Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }).start();
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+        } gm.getPlayer().setState(Samurai.State.IDLE);
         gm.getMusuh().setState(Ronin.State.DIED);
         gm.getAttack().setShowing(false);
         gm.getUp().setShow(true);
         gv.repaint();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
-        } gm.getUp().setShow(false);
+        while(!p.isComplete()){}
+        gm.getUp().setShow(false);
     }
 
     private void roninKiri1() {
-        gm.getPlayer().setState(Samurai.State.IDLE);
+        try {
+            p=new javazoom.jl.player.Player(getClass().getResourceAsStream(Konstanta.SLASH1_SOUND));
+            new Thread(()->{
+                try {
+                    p.play();
+                } catch (JavaLayerException ex) {
+                    Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }).start();
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+        }gm.getPlayer().setState(Samurai.State.IDLE);
         gm.getMusuh().setState(Ronin.State.WIN);
         gm.getMusuh().setMode(1);
+        gm.getDamage().setMode(false);
         gm.getDamage().setShowing(true);
         gv.repaint();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        while(!p.isComplete()){}
     }
 
     private void roninKiri2() {
-        gm.getPlayer().setState(Samurai.State.IDLE);
+        try {
+            p=new javazoom.jl.player.Player(getClass().getResourceAsStream(Konstanta.SLASH2_SOUND));
+            new Thread(()->{
+                try {
+                    p.play();
+                } catch (JavaLayerException ex) {
+                    Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }).start();
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+        }gm.getPlayer().setState(Samurai.State.IDLE);
         gm.getMusuh().setState(Ronin.State.WIN);
         gm.getMusuh().setMode(1);
         gm.getDamage().setShowing(true);
-        gm.getDamage().jalan();
+        gm.getDamage().setMode(true);
         gv.repaint();
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        while(!p.isComplete()){}
     }
 
     private void roninKiri3() {
-        gm.getPlayer().setState(Samurai.State.IDLE);
+        try {
+            p=new javazoom.jl.player.Player(getClass().getResourceAsStream(Konstanta.SLASH1_SOUND));
+            new Thread(()->{
+                try {
+                    p.play();
+                } catch (JavaLayerException ex) {
+                    Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }).start();
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+        }gm.getPlayer().setState(Samurai.State.IDLE);
         gm.getMusuh().setState(Ronin.State.WIN);
         gm.getMusuh().setMode(2);
-        gm.getDamage().jalan();
+        gm.getDamage().setMode(false);
         gm.getDamage().setShowing(true);
         gv.repaint();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        while(!p.isComplete()){}
     }
 
     private void roninKiri4() {
-        gm.getPlayer().setState(Samurai.State.IDLE);
+        try {
+            p=new javazoom.jl.player.Player(getClass().getResourceAsStream(Konstanta.SLASH2_SOUND));
+            new Thread(()->{
+                try {
+                    p.play();
+                } catch (JavaLayerException ex) {
+                    Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }).start();
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+        }gm.getPlayer().setState(Samurai.State.IDLE);
         gm.getMusuh().setState(Ronin.State.WIN);
         gm.getMusuh().setMode(2);
-        gm.getDamage().jalan();
+        gm.getDamage().setMode(true);
         gm.getDamage().setShowing(true);
         gv.repaint();
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        while(!p.isComplete()){}
     }
 
     private void roninKiri5() {
-        gm.getPlayer().setState(Samurai.State.IDLE);
+        try {
+            p=new javazoom.jl.player.Player(getClass().getResourceAsStream(Konstanta.SLASH1_SOUND));
+            new Thread(()->{
+                try {
+                    p.play();
+                } catch (JavaLayerException ex) {
+                    Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }).start();
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+        }gm.getPlayer().setState(Samurai.State.IDLE);
         gm.getMusuh().setState(Ronin.State.WIN);
         gm.getMusuh().setMode(3);
-        gm.getDamage().jalan();
+        gm.getDamage().setMode(false);
         gm.getDamage().setShowing(true);
         gv.repaint();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        while(!p.isComplete()){}
     }
 
     private void roninKiri6() {
-        gm.getPlayer().setState(Samurai.State.IDLE);
+        try {
+            p=new javazoom.jl.player.Player(getClass().getResourceAsStream(Konstanta.SLASH2_SOUND));
+            new Thread(()->{
+                try {
+                    p.play();
+                } catch (JavaLayerException ex) {
+                    Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }).start();
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
+        }gm.getPlayer().setState(Samurai.State.IDLE);
         gm.getMusuh().setState(Ronin.State.WIN);
         gm.getMusuh().setMode(3);
-        gm.getDamage().jalan();
+        gm.getDamage().setMode(true);
         gm.getDamage().setShowing(true);
         gv.repaint();
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SoalKata.class.getName()).log(Level.SEVERE, null, ex);
-        }gm.getDamage().setShowing(false);
+        gm.getDamage().setShowing(false);
+        while(!p.isComplete()){}
     }
 }

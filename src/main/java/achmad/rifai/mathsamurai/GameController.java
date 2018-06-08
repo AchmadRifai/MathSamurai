@@ -8,6 +8,7 @@ package achmad.rifai.mathsamurai;
 import achmad.rifai.mathsamurai.util.Work;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javazoom.jl.decoder.JavaLayerException;
 
 /**
  *
@@ -19,6 +20,7 @@ public class GameController extends Thread{
     private String nama;
     private boolean running;
     private QuisOn qo;
+    private javazoom.jl.player.Player p;
 
     public GameController(GameView gv, GameModel gm, QuisOn qo) {
         this.gv = gv;
@@ -44,13 +46,20 @@ public class GameController extends Thread{
     }
 
     private void mlaku() {
+        try {
+            p=new javazoom.jl.player.Player(getClass().getResourceAsStream(Konstanta.WALK_SOUND));
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+        }if(p!=null)new Thread(()->{
+            try {
+                p.play();
+            } catch (JavaLayerException ex) {
+                Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }).start();
         gm.jalan();
         gv.repaint();
-        try {
-            Thread.sleep(60);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        while(!p.isComplete()){}
     }
 
     private void kalah() {
@@ -72,7 +81,12 @@ public class GameController extends Thread{
     }
 
     private void quis() {
-        qo.quisJalan();
+        try {
+            p=new javazoom.jl.player.Player(getClass().getResourceAsStream(Konstanta.BATTLE_SOUND));
+            p.play();
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+        } qo.quisJalan();
     }
 
     public boolean isRunning() {

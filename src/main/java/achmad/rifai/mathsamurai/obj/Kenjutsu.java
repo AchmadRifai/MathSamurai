@@ -28,6 +28,14 @@ public class Kenjutsu {
         loadImage();
     }
 
+    public boolean isMode() {
+        return mode;
+    }
+
+    public void setMode(boolean mode) {
+        this.mode = mode;
+    }
+
     private void loadImage() {
         try {
             kiri1=ImageIO.read(getClass().getResource(Konstanta.SLASH1));
